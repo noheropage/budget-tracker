@@ -12,7 +12,8 @@ router.post("/api/transaction", ({body}, res) => {
 });
 
 router.post("/api/transaction/bulk", ({body}, res) => {
-  Transaction.insertMany(body)
+  const transactionData = body.filter(el => el.isInDB === false)
+  Transaction.insertMany(transactionData)
     .then(dbTransaction => {
       res.json(dbTransaction);
     })
