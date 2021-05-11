@@ -51,7 +51,7 @@ function checkDatabase() {
         .then((res) => {
           // If our returned response is not empty
           if (res.length !== 0) {
-            // refreshIndexDB();
+            refreshIndexDB();
             // Open another transaction to BudgetStore with the ability to read and write
             transaction = db.transaction(["BudgetStore"], "readwrite");
 
@@ -109,7 +109,6 @@ const refreshIndexDB = () => {
       console.log('Clearing store 🧹');
       store.clear();
       data.forEach((element) => {
-        // console.log(`${element} added!`);
         const transaction2 = db.transaction(["BudgetStore"], "readwrite");
         const store2 = transaction2.objectStore("BudgetStore");
         console.log('Created updated database inside indexDB');
