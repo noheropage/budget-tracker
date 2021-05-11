@@ -90,9 +90,9 @@ const saveRecord = (record) => {
   store.add(record);
 };
 
+// clears IndexDB & reloads with current data from serverside DB
 const refreshIndexDB = () => {
-  // delete current indexDB
-  // reload DB with most current data
+  // quick timeout to ensure function isn't called too early
   new Promise((resolve) => {
     setTimeout(resolve, 500);
   });
