@@ -60,7 +60,7 @@ function checkDatabase() {
 
             // Clear existing entries because our bulk add was successful
             // currentStore.clear();
-            // console.log('Clearing store 🧹');
+            
           }
         });
     }
@@ -100,17 +100,19 @@ const refreshIndexDB = () => {
 
   fetch("/api/transaction")
     .then((response) => {
+      console.log('Retrieving updated databse');
       return response.json();
     })
     .then((data) => {
       const transaction = db.transaction(["BudgetStore"], "readwrite");
       const store = transaction.objectStore("BudgetStore");
+      console.log('Clearing store 🧹');
       store.clear();
       data.forEach((element) => {
         // console.log(`${element} added!`);
         const transaction2 = db.transaction(["BudgetStore"], "readwrite");
         const store2 = transaction2.objectStore("BudgetStore");
-
+        console.log('Created updated database inside indexDB');
         store2.add(element);
       });
     });
