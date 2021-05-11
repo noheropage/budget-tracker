@@ -155,4 +155,4 @@ document.querySelector("#sub-btn").onclick = function() {
   sendTransaction(false);
 };
 
-refreshIndexDB();
+// refreshIndexDB();
